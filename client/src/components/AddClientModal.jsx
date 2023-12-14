@@ -1,6 +1,6 @@
+import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { FaUser } from "react-icons/fa";
-import { useMutation } from "@apollo/client";
 import { ADD_CLIENT } from "../mutations/clientMutations";
 import { GET_CLIENTS } from "../queries/clientQueries";
 
@@ -26,7 +26,7 @@ export default function AddClientModal() {
 		if (name === "" || email === "" || phone === "") {
 			alert("Please fill in all fields!");
 		}
-		console.log(name, email, phone);
+		addClient(name, email, phone);
 		setName("");
 		setEmail("");
 		setPhone("");
