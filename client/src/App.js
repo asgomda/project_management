@@ -1,9 +1,9 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Header from "./components/Header";
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import Home from "./pages/Home";
-import Project from "./pages/Project";
 import NotFound from "./pages/NotFound";
+import Project from "./pages/Project";
 
 // ignore eslint
 const cache = new InMemoryCache({
@@ -28,7 +28,12 @@ const cache = new InMemoryCache({
 });
 
 const client = new ApolloClient({
-	uri: "http://localhost:5000/graphql",
+	// use this uri https://project-manager-z4iq.onrender.com/ for production and
+	uri:
+		process.env.NODE_ENV === "development"
+			? "http://localhost:5000/graphql"
+			: "https://project-manager-z4iq.onrender.com/graphql",
+	// uri: "http://localhost:5000/graphql",
 	cache: cache,
 });
 
